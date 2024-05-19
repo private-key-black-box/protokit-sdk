@@ -70,6 +70,11 @@ export class UnsignedTransaction {
     return this.signed(signature);
   }
 
+  public proof(privateKey: PrivateKey): PendingTransaction {
+    const proof = Proof.create(privateKey, this.getSignatureData());
+    return this.proved(proof);
+  }
+
   public toRuntimeTransaction(): RuntimeTransaction {
     const isSome = Bool(!this.isMessage);
     return new RuntimeTransaction({

@@ -45,6 +45,15 @@ export class AppChainTransaction {
     this.transaction = this.transaction.signed(signature);
   }
 
+  public async proof() {
+    this.hasUnsignedTransaction(this.transaction);
+    
+    // TODO: Implement proof verification
+    // Get proof data + verify proof
+
+    this.transaction = this.transaction.signed(signature);
+  }
+
   public async send() {
     this.hasPendingTransaction(this.transaction);
     await this.transactionSender.send(this.transaction);
